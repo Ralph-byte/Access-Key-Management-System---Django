@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Access Keys</h2>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Key ID</th>
+                <th>Status</th>
+                <th>Date of Procurement</th>
+                <th>Expiry Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key in keys %}
+                <tr>
+                    <td>{{ key.id }}</td>
+                    <td>{{ key.status }}</td>
+                    <td>{{ key.date_of_procurement }}</td>
+                    <td>{{ key.expiry_date }}</td>
+                    <td>
+                        {% if key.status != 'revoked' %}
+                            <a href="{% url 'revoke_key' key.id %}">Revoke</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

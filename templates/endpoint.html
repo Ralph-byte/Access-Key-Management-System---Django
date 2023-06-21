@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if status == 200 %}
+    <h2>Active Key Details</h2>
+    <p>Key ID: {{ key_id }}</p>
+    <p>Expiry Date: {{ expiry_date }}</p>
+{% elif status == 404 %}
+    <h2>No Active Key Found</h2>
+    <p>Sorry, no active key was found for the provided email.</p>
+{% else %}
+    <h2>Error</h2>
+    <p>An error occurred while processing the request.</p>
+{% endif %}
+
+
+{% endblock content %}
